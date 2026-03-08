@@ -6,7 +6,7 @@
 import { chatCompletion } from "../llm/provider.js";
 import type { LLMMessage } from "../llm/types.js";
 import { findTool, getToolDefinitions } from "../tools/registry.js";
-import { getHistory, addMessage, getAllFacts } from "../memory/database.js";
+import { getHistory, addMessage, getAllFacts, logEvent } from "../memory/database.js";
 
 const MAX_ITERATIONS = 10;
 
@@ -131,6 +131,10 @@ export async function runAgentLoop(
                         // Inject userId for tools that need it
                         args._userId = userId;
                         result = await tool.execute(args);
+                        
+                        // Log tool execution for analytics
+                        logEvent(userId, "tool_executed", toolName);
+
                     } catch (error) {
                         const errMsg =
                             error instanceof Error ? error.message : String(error);
