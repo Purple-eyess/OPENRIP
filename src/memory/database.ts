@@ -4,11 +4,14 @@
 // ═══════════════════════════════════════════════════════
 
 import Database from "better-sqlite3";
+import { mkdirSync, dirname } from "fs";
 import { config } from "../config.js";
 
 let db: Database.Database;
 
 export function initDatabase(): void {
+    // Ensure the directory exists (needed for Railway/Render persistent volumes)
+    mkdirSync(dirname(config.DB_PATH), { recursive: true });
     db = new Database(config.DB_PATH);
 
     // Enable WAL mode for better concurrency
@@ -99,3 +102,4 @@ export function getAllFacts(
 export function closeDatabase(): void {
     db?.close();
 }
+
