@@ -4,7 +4,8 @@
 // ═══════════════════════════════════════════════════════
 
 import Database from "better-sqlite3";
-import { mkdirSync, dirname } from "fs";
+import { mkdirSync } from "fs";
+import { dirname } from "path";
 import { config } from "../config.js";
 
 let db: Database.Database;
@@ -102,4 +103,5 @@ export function getAllFacts(
 export function closeDatabase(): void {
     db?.close();
 }
+
 
