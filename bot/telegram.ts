@@ -7,6 +7,7 @@
 import { Bot, InputFile } from "grammy";
 import { config } from "../config.js";
 import { runAgentLoop } from "../agent/loop.js";
+import { getSystemMetrics } from "../memory/database.js";
 
 const bot = new Bot(config.TELEGRAM_BOT_TOKEN);
 
@@ -124,6 +125,33 @@ bot.command("start", async (ctx) => {
         "Escribe *skills* para ver todo lo que puedo hacer por ti.\n",
         { parse_mode: "Markdown" }
     );
+});
+
+// ── /stats Command (Admin Only) ──────────────────────
+bot.command("stats", async (ctx) => {
+    try {
+        const metrics = getSystemMetrics();
+        
+        let msg = "📊 **Métricas de OpenRIP**\n\n";
+        msg += `👥 Usuarios únicos: ${metrics.totalUsers}\n`;
+        msg += `💬 Mensajes recibidos: ${metrics.totalMessages}\n`;
+        msg += `💾 Datos en memoria: ${metrics.totalFacts}\n\n`;
+        
+        msg += "🔧 **Uso de Herramientas:**\n";
+        const tools = Object.entries(metrics.toolsUsed);
+        if (tools.length === 0) {
+            msg += "— Ninguna usada todavía\n";
+        } else {
+            for (const [tool, count] of tools) {
+                msg += `— \`${tool}\`: ${count} veces\n`;
+            }
+        }
+        
+        await ctx.reply(msg, { parse_mode: "Markdown" });
+    } catch (err) {
+        console.error("Error fetching stats:", err);
+        await ctx.reply("❌ Error al cargar las métricas.");
+    }
 });
 
 // ── Utility ──────────────────────────────────────────
