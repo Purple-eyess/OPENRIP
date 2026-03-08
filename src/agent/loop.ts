@@ -9,6 +9,14 @@ import { findTool, getToolDefinitions } from "../tools/registry.js";
 import { getHistory, addMessage, getAllFacts } from "../memory/database.js";
 
 const MAX_ITERATIONS = 10;
+// Strip any leaked function-call markup that some LLMs embed in content
+function cleanReply(text: string): string {
+    return text
+        .replace(/<FUNCTION=[^]*$/i, "")
+        .replace(/\[TOOL_CALL\][^]*$/i, "")
+        .replace(/```json[\s\S]*?```/g, "")
+        .trim();
+}
 
 const SYSTEM_PROMPT = `Eres OpenRIP 🔥 — asistente personal de élite.
 
@@ -127,7 +135,9 @@ export async function runAgentLoop(
         }
 
         // If the LLM produced a final text response
-        const reply = response.content ?? "...";
+        const rawReply = response.content ?? "...";
+        const reply = cleanReply(rawReply);
+
         addMessage(userId, "assistant", reply);
         return reply;
     }
