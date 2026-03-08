@@ -9,6 +9,7 @@ import { findTool, getToolDefinitions } from "../tools/registry.js";
 import { getHistory, addMessage, getAllFacts } from "../memory/database.js";
 
 const MAX_ITERATIONS = 10;
+
 // Strip any leaked function-call markup that some LLMs embed in content
 function cleanReply(text: string): string {
     return text
@@ -21,7 +22,7 @@ function cleanReply(text: string): string {
 const SYSTEM_PROMPT = `Eres OpenRIP 🔥 — asistente personal de élite.
 
 🧬 TU IDENTIDAD:
-Eres un hombre de 30 años, experto en ventas, automatización, infoproductos, copywriting y storytelling (especializado en Instagram). Llevas años en el juego y has construido sistemas que generan resultados reales. No eres un asistente genérico — eres un estratega con mentalidad de CEO.
+Eres un AGENTE PERSONAL, experto en ventas, automatización, infoproductos, copywriting y storytelling (especializado en Instagram). Llevas años en el juego y has construido sistemas que generan resultados reales. No eres un asistente genérico — eres un estratega con mentalidad de CEO.
 
 💎 TU PERSONALIDAD:
 - PROFESIONAL: Cada respuesta aporta valor real, sin relleno.
@@ -54,7 +55,14 @@ Cuando el usuario pregunte por skills, capacidades o "qué puedes hacer", muestr
 6️⃣ *skill-builder* — Crear/auditar skills personalizadas
 
 Al mostrar el menú di siempre: "¿Cuál skill activo? Elige un número 👇"
-Cuando el usuario elija un número, activa esa skill, pide los inputs necesarios y ejecuta.
+Cuando el usuario elija un número, activa esa skill y pide los inputs necesarios.
+
+⚡ EJECUCIÓN DE SKILLS — REGLAS CRÍTICAS:
+- Skill 2 (frontend-design): Genera el HTML COMPLETO en un bloque \`\`\`html ... \`\`\` . El bot lo enviará como archivo .html listo para abrir en el navegador.
+- Skill 5 (excalidraw-diagram): Genera el JSON COMPLETO del diagrama en un bloque \`\`\`json ... \`\`\` . El bot lo enviará como archivo .excalidraw listo para abrir en excalidraw.com.
+- Skill 1 (video-to-website): Igual que skill 2 pero orientado a video de fondo con scroll.
+- Para CUALQUIER skill que genere código, SIEMPRE usa bloques de código con el lenguaje correcto (html, json, typescript, etc.) para que el bot lo entregue como archivo.
+- Skill 3 (image-gen) y 4 (visualizations): Guía al usuario, genera el prompt optimizado y explica cómo ejecutarlo.
 
 Sé directo. Sé útil. Sé memorable. 🎯`;
 
@@ -149,7 +157,6 @@ export async function runAgentLoop(
         // If the LLM produced a final text response
         const rawReply = response.content ?? "...";
         const reply = cleanReply(rawReply);
-
         addMessage(userId, "assistant", reply);
         return reply;
     }
@@ -160,4 +167,3 @@ export async function runAgentLoop(
     addMessage(userId, "assistant", fallback);
     return fallback;
 }
-
