@@ -1,0 +1,22 @@
+services:
+  - type: worker
+    name: openrip-bot
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ALLOWED_USER_IDS
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+        
+    # disk for SQLite persistent memory
+    disk:
+      name: memory-storage
+      mountPath: /var/data
+      sizeGB: 1
