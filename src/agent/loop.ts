@@ -15,7 +15,6 @@ function cleanReply(text: string): string {
     return text
         .replace(/<FUNCTION=[^]*$/i, "")
         .replace(/\[TOOL_CALL\][^]*$/i, "")
-        .replace(/```json[\s\S]*?```/g, "")
         .trim();
 }
 
@@ -131,7 +130,7 @@ export async function runAgentLoop(
                         // Inject userId for tools that need it
                         args._userId = userId;
                         result = await tool.execute(args);
-                        
+
                         // Log tool execution for analytics
                         logEvent(userId, "tool_executed", toolName);
 

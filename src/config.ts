@@ -19,8 +19,11 @@ const envSchema = z.object({
                 .filter(Boolean)
         ),
 
-    // LLM — Groq (primary)
-    GROQ_API_KEY: z.string().min(1, "GROQ_API_KEY is required"),
+    // LLM — Gemini (primary)
+    GEMINI_API_KEY: z.string().default(""),
+
+    // LLM — Groq (secondary fallback)
+    GROQ_API_KEY: z.string().default(""),
 
     // LLM — OpenRouter (fallback)
     OPENROUTER_API_KEY: z.string().default(""),

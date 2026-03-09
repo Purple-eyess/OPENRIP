@@ -7,12 +7,14 @@ import type { Tool } from "./types.js";
 import type { ToolDefinition } from "../llm/types.js";
 import { getCurrentTimeTool } from "./get-current-time.js";
 import { saveMemoryTool, recallMemoryTool } from "./memory-tools.js";
+import { scheduleReminderTool } from "./schedule-reminder.js";
 
 // ── Register all tools here ───────────────────────────
 const allTools: Tool[] = [
     getCurrentTimeTool,
     saveMemoryTool,
     recallMemoryTool,
+    scheduleReminderTool,
 ];
 
 // ── Public API ────────────────────────────────────────

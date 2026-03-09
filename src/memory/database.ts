@@ -42,12 +42,23 @@ export function initDatabase(): void {
       timestamp TEXT    NOT NULL DEFAULT (datetime('now'))
     );
 
+    CREATE TABLE IF NOT EXISTS reminders (
+      id            INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id       TEXT    NOT NULL,
+      topic         TEXT    NOT NULL,
+      trigger_time  TEXT    NOT NULL,  -- ISO format string
+      status        TEXT    NOT NULL DEFAULT 'pending', -- 'pending' | 'done'
+      created_at    TEXT    NOT NULL DEFAULT (datetime('now'))
+    );
+
     CREATE INDEX IF NOT EXISTS idx_conv_user
       ON conversations(user_id);
     CREATE INDEX IF NOT EXISTS idx_facts_user
       ON facts(user_id);
     CREATE INDEX IF NOT EXISTS idx_events_user
       ON events(user_id);
+    CREATE INDEX IF NOT EXISTS idx_reminders_status_time
+      ON reminders(status, trigger_time);
   `);
 
     console.log("💾 SQLite database initialized");
@@ -133,7 +144,7 @@ export function getSystemMetrics(): SystemMetrics {
     const totalUsers = (db.prepare(`SELECT COUNT(DISTINCT user_id) as count FROM conversations`).get() as any).count;
     const totalMessages = (db.prepare(`SELECT COUNT(*) as count FROM conversations WHERE role = 'user'`).get() as any).count;
     const totalFacts = (db.prepare(`SELECT COUNT(*) as count FROM facts`).get() as any).count;
-    
+
     const toolRows = db.prepare(`SELECT data as tool_name, COUNT(*) as count FROM events WHERE event_type = 'tool_executed' GROUP BY tool_name`).all() as Array<{ tool_name: string, count: number }>;
     const toolsUsed: Record<string, number> = {};
     for (const row of toolRows) {
@@ -141,6 +152,36 @@ export function getSystemMetrics(): SystemMetrics {
     }
 
     return { totalUsers, totalMessages, totalFacts, toolsUsed };
+}
+
+// ── Reminders & Proactive Alerts ──────────────────────
+
+export interface Reminder {
+    id: number;
+    user_id: string;
+    topic: string;
+    trigger_time: string;
+    status: "pending" | "done";
+}
+
+export function addReminder(
+    userId: string,
+    topic: string,
+    triggerTimeIso: string
+): void {
+    db.prepare(
+        `INSERT INTO reminders (user_id, topic, trigger_time) VALUES (?, ?, ?)`
+    ).run(userId, topic, triggerTimeIso);
+}
+
+export function getPendingReminders(nowIso: string): Reminder[] {
+    return db
+        .prepare(`SELECT * FROM reminders WHERE status = 'pending' AND trigger_time <= ?`)
+        .all(nowIso) as Reminder[];
+}
+
+export function markReminderDone(id: number): void {
+    db.prepare(`UPDATE reminders SET status = 'done' WHERE id = ?`).run(id);
 }
 
 export function closeDatabase(): void {

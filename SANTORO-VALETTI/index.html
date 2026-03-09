@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santoro Valetti | El Placer Absoluto</title>
+  <meta name="description"
+    content="Bombones de ultra-lujo 100% orgánicos. Una obra maestra de cacao, dátiles y almendras que iguala la indulgencia y la textura crujiente de las marcas más caras del mundo.">
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+</head>
+
+<body>
+
+  <!-- 1. Loader -->
+  <div id="loader">
+    <div class="loader-brand">
+      <img src="logo/logo circular.png" alt="Santoro Valetti Logo Circular" style="height: 120px; width: auto;">
+    </div>
+    <div id="loader-bar-wrap">
+      <div id="loader-bar"></div>
+    </div>
+    <div id="loader-percent">PREPARANDO EXPERIENCIA... 0%</div>
+  </div>
+
+  <!-- 2. Fixed Header -->
+  <header class="site-header">
+    <div class="header-logo">
+      <img src="logo/logo circular.png" alt="Santoro Valetti Logo Circular" style="height: 50px; width: auto;">
+    </div>
+    <ul class="header-nav">
+      <li><a href="#experiencia">Experiencia</a></li>
+      <li><a href="#anatomia">Anatomía</a></li>
+      <li><a href="#reserva">Reserva Lote 001</a></li>
+    </ul>
+  </header>
+
+  <!-- 3. Hero Standalone -->
+  <section class="hero-standalone" id="inicio">
+    <div class="hero-bg">
+      <img src="img/caja_real_bg.png" alt="Caja de chocolates Santoro Valetti abierta">
+    </div>
+    <div class="hero-content">
+      <div class="hero-label">Colección Exclusiva</div>
+      <h1 class="hero-heading">El lujo de pecar sin un gramo de <em>culpa</em>.</h1>
+      <p class="hero-tagline">Ofrecemos a personas exigentes que huyen de los ingredientes artificiales, la oportunidad
+        de disfrutar de un placer absoluto sin remordimientos.</p>
+      <button class="hero-cta" id="hero-btn">
+        <span>Asegurar mi pedido</span>
+        <svg class="arrow" width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 1L15 6M15 6L10 11M15 6H0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="scroll-indicator">
+      <span>Descubre</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- 4. Canvas Video Map -->
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <!-- 5. Dark Overlay -->
+  <div id="dark-overlay"></div>
+
+  <!-- 6. Marquee -->
+  <div class="marquee-wrap" id="marquee-wrap" data-scroll-speed="-15">
+    <div class="marquee-text">SANTORO VALETTI • SANTORO VALETTI • SANTORO VALETTI • SANTORO VALETTI</div>
+  </div>
+
+  <!-- 7. Scroll Container -->
+  <div id="scroll-container">
+
+    <!-- Tensión -->
+    <section class="scroll-section align-right" data-enter="15" data-leave="30" data-animation="slide-left"
+      id="experiencia">
+      <div class="section-inner">
+        <span class="section-label">001 / El Problema</span>
+        <h2 class="section-heading">Ya no te conformas con lo <em>ordinario</em>.</h2>
+        <p class="section-body">Las marcas comerciales están llenas de azúcar refinada y aceites inflamatorios. Los
+          snacks saludables tradicionales son secos, aburridos y no ofrecen sensación de premio.</p>
+        <p class="section-note">Merecías un nuevo estándar.</p>
+      </div>
+    </section>
+
+    <!-- Ingredientes -->
+    <section class="scroll-section align-left" data-enter="35" data-leave="55" data-animation="fade-up" id="anatomia">
+      <div class="section-inner" style="max-width: 55vw;">
+        <span class="section-label">002 / La Anatomía de la Perfección</span>
+        <h2 class="section-heading">Solo <em>tres</em> ingredientes.</h2>
+        <p class="section-body">Una obra maestra que iguala la indulgencia y la textura crujiente de las marcas más
+          caras del mundo, pero respetando tu cuerpo de forma absoluta.</p>
+
+        <div class="ingredients-grid">
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🍫</div>
+            <h3 class="ingredient-name">Cacao Orgánico</h3>
+            <p class="ingredient-desc">Puro chocolate oscuro, rico en antioxidantes y profundo en sabor.</p>
+          </div>
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🍯</div>
+            <h3 class="ingredient-name">Dátil Medjool</h3>
+            <p class="ingredient-desc">Dulzura natural, textura acaramelada y cero picos de insulina irritantes.</p>
+          </div>
+          <div class="ingredient-card">
+            <div class="ingredient-icon">🌰</div>
+            <h3 class="ingredient-name">Almendra Tostada</h3>
+            <p class="ingredient-desc">El centro perfectamente crujiente con nuestro característico sonido al morder.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lifestyle -->
+    <section class="scroll-section align-right" data-enter="58" data-leave="72" data-animation="scale-up">
+      <div class="section-inner">
+        <span class="section-label">003 / El Estilo de Vida</span>
+        <h2 class="section-heading">El regalo <em>perfecto</em>.</h2>
+        <p class="section-body">Nuestras cajas rígidas magnéticas de color borgoña con estampados dorados convierten el
+          acto de regalar (o regalarte) en un momento de estatus. Todo, desde el sonido del cierre hasta el desempaque,
+          está diseñado para asombrar.</p>
+      </div>
+    </section>
+
+    <!-- Stats sobre fondo oscuro -->
+    <section class="scroll-section section-stats" data-enter="75" data-leave="88" data-animation="stagger-up">
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-number" data-value="100" data-decimals="0">0</span>
+          <span class="stat-suffix">%</span>
+          <span class="stat-label">Ingredientes Orgánicos</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-value="0" data-decimals="0">100</span>
+          <span class="stat-suffix">%</span>
+          <span class="stat-label">Azúcar Refinada</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number" data-value="3" data-decimals="0">0</span>
+          <span class="stat-suffix"></span>
+          <span class="stat-label">Ingredientes Base</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The scroll container ends here, pricing section moved outside -->
+  </div>
+
+  <!-- Cierre / Oferta (Estático al final) -->
+  <section class="section-cta-full static-pricing" id="reserva">
+
+    <!-- Background for Pricing -->
+    <div class="pricing-bg">
+      <img src="img/caja_real_bg.png" alt="Caja de chocolates abierta">
+      <div class="pricing-bg-overlay"></div>
+    </div>
+
+    <div class="cta-container">
+      <div class="lote-badge">
+        <div class="dot"></div>Lanzamiento Exclusivo — Lote 001
+      </div>
+      <h2 class="section-heading" style="margin-bottom: 0.5rem;">Cajas hechas <em>bajo pedido</em>.</h2>
+      <p class="section-body" style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Nuestro chocolate se hace a mano para garantizar frescura absoluta y el crunch perfecto. La web no es un
+        catálogo, es un evento exclusivo.</p>
+
+      <div class="pricing-grid">
+        <!-- Caja Pequeña (6) -->
+        <div class="pricing-card">
+          <h3 class="pricing-name">The Petite Box</h3>
+          <p class="pricing-desc">6 Bombones de Lujo</p>
+          <div style="margin: 1.5rem 0; display: flex; justify-content: center; align-items: center; gap: 15px;">
+            <div style="text-align: center;">
+              <img src="productos/trufa.png" alt="Trufa Casual"
+                style="width: 70px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.3));">
+            </div>
+            <span style="color: var(--gold-dim); font-size: 0.8rem; font-style: italic;">o</span>
+            <div style="text-align: center;">
+              <img src="productos/corazon.png" alt="Corazón Romántico"
+                style="width: 80px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.4));">
+            </div>
+          </div>
+          <p class="pricing-body"
+            style="font-size: 0.8rem; color: #dac5a7; margin-bottom: 1.5rem; line-height: 1.4; font-family: var(--font-body); font-weight: 300;">
+            Una deslumbrante introducción al placer absoluto. Selecciona tu silueta preferida: la firmeza clásica de la
+            Trufa o la pasión desbordante del Corazón.
+          </p>
+          <div class="pricing-price"><small>COP</small> $42.000</div>
+          <div class="pricing-stock">Disponibles: <span class="stock-number">15</span></div>
+          <button class="pricing-btn">Reservar Lote</button>
+        </div>
+
+        <!-- Caja Mediana (12) -->
+        <div class="pricing-card featured">
+          <h3 class="pricing-name">The Signature Box</h3>
+          <p class="pricing-desc">12 Bombones de Lujo</p>
+          <div style="margin: 1.5rem 0; display: flex; justify-content: center; align-items: center; gap: 15px;">
+            <div style="text-align: center;">
+              <img src="productos/trufa.png" alt="Trufa Casual"
+                style="width: 80px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.3));">
+            </div>
+            <span style="color: var(--gold-dim); font-size: 0.8rem; font-style: italic;">o</span>
+            <div style="text-align: center;">
+              <img src="productos/corazon.png" alt="Corazón Romántico"
+                style="width: 90px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.4));">
+            </div>
+          </div>
+          <p class="pricing-body"
+            style="font-size: 0.8rem; color: #dac5a7; margin-bottom: 1.5rem; line-height: 1.4; font-family: var(--font-body); font-weight: 300;">
+            El obsequio definitivo. Una obra maestra esculpida a mano diseñada para cautivar. Configura tu caja con
+            nuestra majestuosa Trufa o el deslumbrante Corazón.
+          </p>
+          <div class="pricing-price"><small>COP</small> $78.000</div>
+          <div class="pricing-stock">Disponibles: <span class="stock-number">25</span></div>
+          <button class="pricing-btn" style="background: var(--gold-bright);">Asegurar Regalo</button>
+        </div>
+
+        <!-- Caja Grande (24) -->
+        <div class="pricing-card">
+          <h3 class="pricing-name">The Prestige Box</h3>
+          <p class="pricing-desc">24 Bombones de Lujo</p>
+          <div style="margin: 1.5rem 0; display: flex; justify-content: center; align-items: center; gap: 15px;">
+            <div style="text-align: center;">
+              <img src="productos/trufa.png" alt="Trufa Casual"
+                style="width: 70px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.3));">
+            </div>
+            <span style="color: var(--gold-dim); font-size: 0.8rem; font-style: italic;">o</span>
+            <div style="text-align: center;">
+              <img src="productos/corazon.png" alt="Corazón Romántico"
+                style="width: 80px; height: auto; filter: drop-shadow(0 4px 15px rgba(200,169,97,0.4));">
+            </div>
+          </div>
+          <p class="pricing-body"
+            style="font-size: 0.8rem; color: #dac5a7; margin-bottom: 1.5rem; line-height: 1.4; font-family: var(--font-body); font-weight: 300;">
+            La opulencia en su máxima expresión. La majestuosidad hecha chocolate para paladares extraordinarios,
+            entregada en la presentación de tu elección.
+          </p>
+          <div class="pricing-price"><small>COP</small> $145.000</div>
+          <div class="pricing-stock">Disponibles: <span class="stock-number">10</span></div>
+          <button class="pricing-btn">Reservar Prestige</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-logo">
+      <img src="logo/logo circular.png" alt="Santoro Valetti"
+        style="height: 70px; width: auto; margin: 0 auto 1.5rem auto; opacity: 0.9;">
+    </div>
+    <div class="footer-text">© 2026 Santoro Valetti. El placer absoluto es tu nuevo estándar.</div>
+  </footer>
+
+  <!-- CDN Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
